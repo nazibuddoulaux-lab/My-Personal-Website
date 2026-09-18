@@ -1,0 +1,169 @@
+/* Top padding clears the fixed nav's rest-state height (~3.625rem)
+   on top of the section's own 40px (2.5rem) Figma gap. */
+.hero {
+  padding: 6.125rem 0 2.5rem;
+}
+
+.hero__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero__name {
+  margin: 0;
+  /* Cancels Anton's built-in leading below the last line, so the true
+     visible gap to the paragraph below is Figma's 24px, not ~80px. */
+  margin-bottom: -2.03rem;
+  font-family: var(--font-accent);
+  font-size: 13.875rem; /* 222px */
+  font-weight: 400;
+  line-height: 130%;
+  color: var(--color-heading);
+  text-transform: uppercase;
+  /* The magnetic hover effect nudges this via inline transform; the
+     transition is what makes it feel "sticky" rather than jumpy. */
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__name {
+    transition: none;
+  }
+}
+
+.hero__name span {
+  display: block;
+}
+
+.typewriter-cursor::after {
+  content: '';
+  display: inline-block;
+  width: 0.07em;
+  height: 0.85em;
+  margin-left: 0.04em;
+  background: currentColor;
+  vertical-align: -0.05em;
+  animation: typewriter-blink 0.9s steps(1) infinite;
+}
+
+@keyframes typewriter-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-cursor::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* Anton's line-height box has a lot of built-in leading above/below the
+   actual cap-height glyphs, so a plain 24px gap renders as ~120px of
+   visible space. This negative margin (in em, so it scales with
+   font-size at every breakpoint) cancels that leading out, leaving a
+   true 24px gap between the two lines' visible glyphs at the baseline
+   222px size. */
+.hero__name span + span {
+  margin-top: -0.3243em;
+}
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem; /* 16px */
+  align-self: stretch;
+}
+
+.hero__description {
+  margin: 0;
+  max-width: 36.5625rem; /* 585px */
+  font-family: var(--font-sans);
+  font-size: 1.125rem; /* 18px */
+  font-weight: 500;
+  line-height: 148%;
+  color: #000;
+}
+
+.hero__resume {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.5rem; /* 24px */
+  font-weight: 400;
+  line-height: 130%;
+  text-transform: capitalize;
+  text-decoration: none;
+  background: var(--gradient-resume);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero__content .projects__heading {
+  align-self: stretch;
+  margin-top: 3.75rem; /* 60px extra gap baked into the Figma component */
+}
+
+@media (max-width: 1279px) {
+  .hero__name {
+    font-size: 11rem;
+    margin-bottom: -1.38rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero__name {
+    font-size: 8rem;
+    margin-bottom: -0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 9.25rem 0 1.5rem;
+  }
+
+  .hero__name {
+    /* Fluid, not fixed: keeps the name filling the grid edge-to-edge at
+       every width in this tier (not just exactly 768px), so it never
+       overflows narrower tablets/phones inside this breakpoint. */
+    --fluid-size: calc((100vw - 3rem) * 0.18523);
+    font-size: var(--fluid-size);
+    margin-bottom: calc(18.49px - 0.226531 * var(--fluid-size));
+  }
+
+  .hero__description {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+
+  .hero__resume {
+    font-size: 1.25rem;
+  }
+
+  .hero__content .projects__heading {
+    margin-top: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    /* The nav name wraps to two lines at this width, making the fixed
+       pill taller than the old padding accounted for, which let the
+       heading start underneath it. This keeps a 40px+ clearance. */
+    padding: 9rem 0 1.5rem;
+  }
+
+  .hero__name {
+    font-size: 3.25rem;
+    margin-bottom: 0.42rem;
+  }
+
+  .hero__resume {
+    font-size: 1.125rem;
+  }
+}

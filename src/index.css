@@ -1,0 +1,164 @@
+@font-face {
+  font-family: 'Home Video';
+  src: url('/fonts/HomeVideo-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Home Video';
+  src: url('/fonts/HomeVideo-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+
+  --color-bg: #ffffff;
+  --color-text: #515151;
+  --color-heading: #212121;
+  --color-muted: #86828d;
+  --color-border: #e7e5ea;
+  --color-card: #f2f2f2;
+  --color-pink: #ff3fa0;
+  --color-teal: #00b39c;
+
+  --gradient-brand: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  --gradient-illustration: linear-gradient(
+    135deg,
+    #ff9fd6 0%,
+    #b06bf2 45%,
+    #4f7bf0 100%
+  );
+  --gradient-article: linear-gradient(90deg, #a3d91c 0%, #a578ff 44.74%);
+  --gradient-resume: linear-gradient(90deg, #ff3e95 0.01%, #3fa2ff 40.51%);
+
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-display: 'Home Video', 'Bebas Neue', 'Inter', system-ui, sans-serif;
+  --font-accent: 'Anton', 'Bebas Neue', 'Inter', system-ui, sans-serif;
+
+  /* Design is authored at a 1440px frame with a fixed 120px side margin
+     (1200px content). Everything below is sized in rem so that, above
+     1440px, the whole layout scales up together with the root font size
+     instead of just adding extra whitespace. */
+  --container: 75rem; /* 1200px at the 1440 baseline */
+  --radius-sm: 0.375rem; /* 6px */
+  --radius-md: 1.25rem; /* 20px */
+  --radius-lg: 1.75rem; /* 28px */
+  --radius-full: 999px;
+}
+
+html {
+  font-size: 16px;
+}
+
+/* Above the 1440px design frame, scale the rem baseline with the viewport
+   so every element (type, spacing, the 120px margin) grows proportionally
+   instead of the layout just staying pinned at 1200px. */
+@media (min-width: 1440px) {
+  html {
+    /* 1440px design frame ÷ 16px base = 90; keeps this a single-unit
+       (vw) calc, since CSS calc() can't multiply px by vw directly. */
+    font-size: calc(100vw / 90);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-size: 0.9375rem; /* 15px */
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  /* No padding at/above the 1200px content width: the max-width + auto
+     margins already centre it with the full 120px page margin, and any
+     extra padding here would shrink the usable content width below the
+     exact figures used throughout (e.g. 384px image + 40px gap + 776px
+     text), breaking pixel-accurate layouts. Below 1200px this becomes a
+     safety gutter so content doesn't touch the viewport edge. */
+  padding: 0;
+}
+
+@media (max-width: 1199px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+}
+
+.display-heading {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: capitalize;
+  letter-spacing: 0;
+  color: var(--color-heading);
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Scroll-reveal: elements fade + rise into place as they enter the
+   viewport (toggled by a shared IntersectionObserver set up in App.jsx). */
+.reveal {
+  opacity: 0;
+  transform: translateY(2.5rem);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+

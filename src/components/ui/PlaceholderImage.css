@@ -1,0 +1,13 @@
+.placeholder-image {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, #ececec, #dcdcdc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #9a9a9a;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+  overflow: hidden;
+}

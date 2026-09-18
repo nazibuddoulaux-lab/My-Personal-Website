@@ -1,0 +1,222 @@
+.projects {
+  padding: 3.5rem 0;
+}
+
+.projects__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  font-size: 5.25rem;
+  line-height: 130%;
+  margin: 0;
+}
+
+.projects__row {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.projects__row:last-child {
+  margin-bottom: 0;
+}
+
+.projects__row--split {
+  gap: 3.75rem; /* 60px, row 1's own gap in Figma */
+}
+
+.projects__row--row {
+  gap: 1.5rem; /* 24px, rows 2/3's own gap in Figma */
+}
+
+.project-cell {
+  margin: 0;
+}
+
+/* Image cells are a fixed 384x500 at the design baseline (24rem x 31.25rem),
+   scaling fluidly with the root rem so the ratio never changes. */
+.project-cell--image {
+  flex: 0 0 24rem;
+  width: 24rem;
+}
+
+.project-cell__link {
+  display: block;
+  overflow: hidden;
+  border-radius: 0;
+  transition: border-radius 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-cell__link:hover {
+  border-radius: 1.5rem; /* 24px */
+}
+
+.project-cell__link .placeholder-image {
+  border-radius: 0; /* clipped by the link's rounded corners instead */
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-cell__link:hover .placeholder-image {
+  transform: scale(1.08);
+}
+
+.project-cell figcaption {
+  margin-top: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 120%;
+  color: #3f3f3f;
+}
+
+.project-cell--pair {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  flex: 0 0 auto;
+}
+
+.project-cell--text {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.project-cell--text p {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 150%;
+  color: #000;
+  margin: 0 0 1rem;
+}
+
+.project-cell--text p:last-child {
+  margin-bottom: 0;
+}
+
+.project-cell--illustration {
+  flex: 0 0 24rem;
+  width: 24rem;
+  height: 31.25rem;
+  background: linear-gradient(180deg, #ffcee0 0%, #9f9aff 36%, #3a5efa 100%);
+  border-radius: 0;
+  padding: 1.5rem 2.125rem 1.625rem 2.125rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+
+.project-cell__badge {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 2rem;
+  line-height: 150%;
+  text-transform: capitalize;
+}
+
+.project-cell--illustration p {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 150%;
+  margin: 0;
+}
+
+.project-cell--cta {
+  flex: 0 0 19.75rem;
+  width: 19.75rem;
+  background: none;
+  border-radius: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.project-cell--cta p {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 150%;
+  color: #000;
+  margin: 0;
+}
+
+@media (max-width: 1279px) {
+  .projects__heading {
+    font-size: 4rem;
+  }
+}
+
+/* Tablet ("pad"): every case study - including the illustration card -
+   reflows into one uniform 2-column grid, in original source order,
+   regardless of which desktop row it came from. The row and pair
+   wrappers are dissolved (display: contents) so their children become
+   direct grid items; a lone trailing card lands in the left column
+   naturally, since grid auto-placement fills left-to-right. Only the
+   intro paragraph and the CTA card span both columns. */
+@media (max-width: 1024px) {
+  .projects__heading {
+    font-size: 3rem;
+  }
+
+  .projects .container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .projects__row {
+    display: contents;
+  }
+
+  .project-cell--pair {
+    display: contents;
+  }
+
+  .project-cell--text,
+  .project-cell--cta {
+    grid-column: 1 / -1;
+  }
+
+  .project-cell--image,
+  .project-cell--illustration,
+  .project-cell--cta {
+    width: auto;
+  }
+
+  .project-cell--illustration {
+    height: auto;
+    aspect-ratio: 384 / 500;
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects {
+    padding: 2.5rem 0;
+  }
+
+  .projects__heading {
+    /* Fluid so the row never overflows narrower widths inside this
+       tier while still spreading edge-to-edge at 768px. */
+    font-size: calc((100vw - 3rem) * 0.07139);
+  }
+}
+
+@media (max-width: 480px) {
+  .projects__heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    font-size: 1.75rem;
+  }
+
+  .projects .container {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

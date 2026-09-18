@@ -1,0 +1,229 @@
+.stats {
+  padding: 3.75rem 0;
+}
+
+/* A real 3x2 grid (not two independently-flowing columns) so the two
+   bottom cards always line up regardless of how tall the cards above
+   them render. */
+.stats__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+}
+
+.stats__card--experience {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.stats__card--projects {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.stats__card--tags {
+  grid-column: 2;
+  grid-row: 1 / 3;
+}
+
+.stats__card--contact {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.stats__card--image {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.stats__card {
+  background: var(--color-card);
+  border-radius: 0;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  min-width: 0;
+}
+
+.stats__card--image {
+  padding: 0;
+  background: none;
+}
+
+.stats__card--icon-packs {
+  position: relative;
+  overflow: hidden;
+}
+
+.stats__card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.stats__card-overlay {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 9.0625rem 1.25rem 1.875rem 1.25rem;
+}
+
+.stats__card--contact {
+  padding: 1.3125rem 1.25rem 1.5625rem 1.25rem;
+}
+
+.stats__card-icon {
+  width: 6.625rem;
+  flex: none;
+}
+
+.stats__card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.stats__card-inset {
+  width: 10.125rem;
+  flex: none;
+}
+
+.stats__card h3 {
+  font-family: var(--font-display);
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  line-height: 130%;
+  font-weight: 400;
+  color: var(--color-heading);
+  margin: 0;
+}
+
+.stats__card p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 150%;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.stats__card .placeholder-image {
+  border-radius: 0;
+}
+
+.stats__card .btn {
+  align-self: flex-start;
+}
+
+.stats__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.stats__tags li {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: 0.375rem 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 1024px) {
+  .stats__grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .stats__card--tags {
+    grid-column: 1 / 3;
+    grid-row: 1;
+  }
+
+  .stats__card--experience {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .stats__card--contact {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .stats__card--projects {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .stats__card--image {
+    grid-column: 2;
+    grid-row: 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .stats {
+    padding: 2.5rem 0;
+  }
+
+  /* 9+ years / 40+ projects pair up in one 2-col row, then 20+ diverse
+     industries breaks full width, then Contact me / Download icon
+     packs pair up in the next 2-col row - via source order plus the
+     tags card's explicit full-width span, not manual placement. */
+  .stats__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+  }
+
+  .stats__card--tags,
+  .stats__card--experience,
+  .stats__card--contact,
+  .stats__card--projects,
+  .stats__card--image {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .stats__card--tags {
+    grid-column: 1 / -1;
+  }
+
+  .stats__card--experience {
+    order: 1;
+  }
+
+  .stats__card--projects {
+    order: 2;
+  }
+
+  .stats__card--tags {
+    order: 3;
+  }
+
+  .stats__card--contact {
+    order: 4;
+  }
+
+  .stats__card--image {
+    order: 5;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .stats__card--tags {
+    grid-column: 1;
+  }
+}

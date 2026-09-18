@@ -1,0 +1,65 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6875rem 1.375rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  transition:
+    background-color 0.4s ease-in,
+    background-image 0.4s ease-in,
+    border-color 0.4s ease-in,
+    box-shadow 0.4s ease-in,
+    color 0.4s ease-in,
+    backdrop-filter 0.4s ease-in,
+    transform 0.4s ease-in;
+}
+
+.btn--gradient {
+  background: var(--gradient-brand);
+  color: #fff;
+}
+
+.btn--black {
+  background: var(--color-heading);
+  color: #fff;
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-heading);
+  border-color: var(--color-heading);
+}
+
+/* "Glass button" hover: a frosted, translucent pill with a soft colorful
+   tint glowing through it, a light rim, and a gentle lift — applies the
+   same treatment on top of every variant. */
+.btn:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.14);
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 63, 160, 0.55) 0%,
+    rgba(139, 92, 246, 0.5) 45%,
+    rgba(6, 182, 212, 0.5) 100%
+  );
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  box-shadow:
+    0 10px 30px rgba(139, 92, 246, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -1px 10px rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}

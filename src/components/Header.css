@@ -1,0 +1,143 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  padding-top: 2rem;
+  pointer-events: none;
+}
+
+/* Morphs from the flush, full-width bar (matching every other section's
+   edges) into a floating, blurred glass pill once the page scrolls —
+   same signature interaction as ahmadfiroz.com's nav. */
+.site-header__pill {
+  pointer-events: auto;
+  border-radius: 0;
+  background: transparent;
+  border: 1px solid transparent;
+  box-shadow: none;
+  transition:
+    max-width 0.3s ease-out,
+    border-radius 0.3s ease-out,
+    background-color 0.3s ease-out,
+    border-color 0.3s ease-out,
+    box-shadow 0.3s ease-out,
+    padding 0.3s ease-out;
+}
+
+.site-header.is-scrolled .site-header__pill {
+  width: fit-content;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 1.125rem 1.75rem 1.0625rem; /* +6px top, +5px bottom vs rest state */
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border-color: rgba(33, 33, 33, 0.08);
+  box-shadow: 0 8px 24px rgba(33, 33, 33, 0.1);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Once floating, the name and nav links sit close together on the
+   left instead of spreading to the pill's edges. */
+.site-header.is-scrolled .site-header__inner {
+  justify-content: flex-start;
+  gap: 3rem;
+}
+
+.site-header__name {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 130%;
+  color: var(--color-heading);
+  transition: font-size 0.3s ease-out;
+}
+
+/* On scroll the name shrinks to match the nav links' size, staying black
+   while the links themselves stay muted. */
+.site-header.is-scrolled .site-header__name {
+  font-size: 0.875rem;
+}
+
+.site-header__nav {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.site-header__nav a {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 150%;
+  text-transform: capitalize;
+  color: rgba(33, 33, 33, 0.4);
+  text-decoration: none;
+}
+
+.site-header__nav a:hover {
+  color: var(--color-heading);
+}
+
+@media (max-width: 768px) {
+  .site-header {
+    padding-top: 1.5rem;
+  }
+
+  .site-header__nav {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header__inner {
+    gap: 0.75rem;
+  }
+
+  .site-header__name {
+    font-size: 1.125rem;
+  }
+
+  .site-header__nav {
+    gap: 0.75rem;
+  }
+
+  .site-header__nav a {
+    font-size: 0.75rem;
+  }
+
+  .site-header.is-scrolled .site-header__pill {
+    max-width: calc(100% - 1.5rem);
+    padding: 1rem 1.125rem 0.9375rem; /* +6px top, +5px bottom vs rest state */
+    border-radius: var(--radius-full);
+  }
+
+  .site-header.is-scrolled .site-header__inner {
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+  }
+
+  .site-header.is-scrolled .site-header__name {
+    flex: none;
+    font-size: 0.75rem;
+  }
+
+  .site-header.is-scrolled .site-header__nav {
+    gap: 0.625rem;
+  }
+
+  .site-header.is-scrolled .site-header__nav a {
+    font-size: 0.6875rem;
+  }
+}
