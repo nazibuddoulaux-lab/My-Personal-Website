@@ -9,7 +9,11 @@ function StatsGrid() {
       <div className="container stats__grid">
         <div className="stats__card stats__card--experience reveal">
           <h3>9+ years of professional experience</h3>
-          <PlaceholderImage label="experience chart" ratio="384 / 262" />
+          <PlaceholderImage
+            label="experience chart"
+            src="/images/9+.jpg"
+            ratio="384 / 262"
+          />
         </div>
 
         <div
@@ -31,6 +35,7 @@ function StatsGrid() {
           <PlaceholderImage
             className="stats__card-icon"
             label="icon"
+            src="/images/Contact%20Me.png"
             ratio="106 / 78"
           />
           <div className="stats__card-text">
@@ -62,6 +67,7 @@ function StatsGrid() {
           <PlaceholderImage
             className="stats__card-bg"
             label="decorative"
+            src="/images/Icons.jpg"
             ratio="384 / 310"
           />
           <div className="stats__card-overlay">

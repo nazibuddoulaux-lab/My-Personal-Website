@@ -1,16 +1,17 @@
 .site-footer {
   position: relative;
-  margin-top: 2.5rem;
+  /* 20px max gap to the gallery carousel above it (the horizontal
+     scrolling row of case-study images, GalleryRow.jsx). */
+  margin-top: 1.25rem;
   min-height: 28.5rem; /* 456px */
   padding: 3.75rem 0; /* 60px, matches Figma's frame padding */
   overflow: hidden;
 }
 
-/* Placeholder until the real footer scene image is dropped in. */
 .site-footer__bg {
   position: absolute;
   inset: 0;
-  background: #e5e5e5;
+  background: #e5e5e5 url('/images/Footer.jpg') center center / cover no-repeat;
 }
 
 .site-footer__inner {
@@ -63,7 +64,6 @@
 
 @media (max-width: 768px) {
   .site-footer {
-    margin-top: 2rem;
     padding: 3rem 0;
   }
 
@@ -72,7 +72,13 @@
   }
 
   .site-footer__inner {
-    align-items: stretch;
+    /* Fills the full padded height (456px frame minus 2x48px padding at
+       this tier) so centering happens within the whole footer, not just
+       the shorter min-height box inherited from the desktop layout. */
+    min-height: 22.5rem;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3.75rem; /* 60px, replaces space-between so it isn't stretched by the footer's height */
   }
 
   .site-footer__links {

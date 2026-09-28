@@ -11,3 +11,8 @@
   text-transform: capitalize;
   overflow: hidden;
 }
+
+.placeholder-image--real {
+  object-fit: cover;
+  background: none;
+}

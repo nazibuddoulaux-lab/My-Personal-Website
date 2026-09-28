@@ -12,10 +12,13 @@ export const projectRows = [
         items: [
           {
             image: 'ai analytics platform',
+            src: '/images/UBIX.jpg',
             caption: 'AI driven advanced analytics platform',
+            href: '/case-study/ai-analytics-platform',
           },
           {
             image: 'healthcare redesign',
+            src: '/images/HC.jpg',
             caption: 'Healthcare website redesign',
           },
         ],
@@ -23,8 +26,8 @@ export const projectRows = [
       {
         type: 'text',
         paragraphs: [
-          'Competently implement multidisciplinary channels without dynamic architectures. Credibly engage plug & play leadership of principle centered methods of empowerment. Holisticly productivate premier processes rather than standardized growth strategies.',
-          'Synergistically conceptualize optimal channels whereas scalable partnerships. Credibly provide.',
+          "This is a collection of work I'm proud of spanning product design, design systems, brand identity, illustration, and visual design.",
+          "What ties it together is a belief that good strategy and good craft aren't separate disciplines; the best products happen when they inform each other. Below, you'll find a few examples of how that's played out across different problems, teams, and constraints.",
         ],
       },
     ],
@@ -58,17 +61,19 @@ export const projectRows = [
       {
         type: 'image',
         image: 'blue mandarin cover',
+        src: '/images/BM.jpg',
         caption: 'Blue Mandarin style guidelines',
       },
       {
         type: 'cta',
         paragraph:
-          'Competently implement multidisciplinary channels without dynamic architectures. Credibly engage plug & play leadership of principle centered methods of empowerment. Holisticly productivate premier processes rather than standardized growth strategies.',
+          "Have a project in mind or just want to talk shop? I'm always happy to chat about design, strategy, or how we might work together.",
         button: 'Set a 15 Min Meeting',
       },
       {
         type: 'image',
         image: 'announsr identity',
+        src: '/images/SR.jpg',
         caption: 'AnnounSr Brand identity',
       },
     ],

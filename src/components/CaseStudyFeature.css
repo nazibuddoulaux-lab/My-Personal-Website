@@ -79,10 +79,19 @@
   font-size: 1.5rem;
   line-height: 130%;
   background: var(--gradient-article);
+  /* Sized wider than the text so there's room to slide; hovering
+     shifts which slice of the gradient shows through the text. */
+  background-size: 200% 100%;
+  background-position: 0% 0%;
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-decoration: none;
+  transition: background-position 0.6s ease;
+}
+
+.case-study__link:hover {
+  background-position: 100% 0%;
 }
 
 @media (max-width: 1024px) {

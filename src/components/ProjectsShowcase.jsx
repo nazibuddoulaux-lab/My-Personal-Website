@@ -1,25 +1,68 @@
+import { Link } from 'react-router-dom'
 import './ProjectsShowcase.css'
 import { projectRows } from '../data/projects'
 import PlaceholderImage from './ui/PlaceholderImage'
 import Button from './ui/Button'
+import { use3DTilt } from '../hooks/use3DTilt'
 
-function ImageCell({ image, caption, delay }) {
+function ImageCell({ image, src, caption, href = '#case-study', delay }) {
+  const LinkComponent = href.startsWith('/') ? Link : 'a'
+  const linkProp = href.startsWith('/') ? { to: href } : { href }
+
   return (
     <figure
       className="project-cell project-cell--image reveal"
       style={{ transitionDelay: `${delay}s` }}
     >
-      <a className="project-cell__link" href="#case-study" aria-label={caption}>
-        <PlaceholderImage label={image} ratio="384 / 500" />
-      </a>
+      <LinkComponent className="project-cell__link" {...linkProp} aria-label={caption}>
+        <PlaceholderImage label={image} src={src} ratio="384 / 500" />
+      </LinkComponent>
       <figcaption>{caption}</figcaption>
     </figure>
   )
 }
 
+function IllustrationCell({ cell, delay }) {
+  const tiltRef = use3DTilt({ maxTilt: 8, scale: 1.03 })
+
+  return (
+    <div
+      className="project-cell project-cell--illustration reveal"
+      style={{ transitionDelay: `${delay}s` }}
+      ref={tiltRef}
+    >
+      <div className="project-cell__illustration-content">
+        <span className="project-cell__badge">{cell.label}</span>
+        <p>{cell.paragraph}</p>
+      </div>
+      <PlaceholderImage
+        className="project-cell__illustration-hover"
+        label="illustration"
+        src="/images/Illustration.jpg"
+        ratio="384 / 500"
+      />
+      <Button
+        variant="black"
+        href="#illustrations"
+        className="project-cell__illustration-button"
+      >
+        Check My Illustrations
+      </Button>
+    </div>
+  )
+}
+
 function ProjectCell({ cell, delay }) {
   if (cell.type === 'image') {
-    return <ImageCell image={cell.image} caption={cell.caption} delay={delay} />
+    return (
+      <ImageCell
+        image={cell.image}
+        src={cell.src}
+        caption={cell.caption}
+        href={cell.href}
+        delay={delay}
+      />
+    )
   }
 
   if (cell.type === 'image-pair') {
@@ -29,7 +72,9 @@ function ProjectCell({ cell, delay }) {
           <ImageCell
             key={item.image}
             image={item.image}
+            src={item.src}
             caption={item.caption}
+            href={item.href}
             delay={delay + itemIndex * 0.08}
           />
         ))}
@@ -51,15 +96,7 @@ function ProjectCell({ cell, delay }) {
   }
 
   if (cell.type === 'illustration') {
-    return (
-      <div
-        className="project-cell project-cell--illustration reveal"
-        style={{ transitionDelay: `${delay}s` }}
-      >
-        <span className="project-cell__badge">{cell.label}</span>
-        <p>{cell.paragraph}</p>
-      </div>
-    )
+    return <IllustrationCell cell={cell} delay={delay} />
   }
 
   if (cell.type === 'cta') {

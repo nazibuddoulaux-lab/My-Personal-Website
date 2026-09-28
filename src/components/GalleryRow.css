@@ -1,5 +1,7 @@
 .gallery {
-  padding: 0 0 4rem;
+  /* No bottom padding here - the 20px gap to the footer below comes
+     entirely from .site-footer's own margin-top, so the two don't stack. */
+  padding: 0;
   overflow-x: hidden;
 }
 
@@ -78,10 +80,6 @@
 }
 
 @media (max-width: 480px) {
-  .gallery {
-    padding: 0 0 2.5rem;
-  }
-
   .gallery__grid {
     padding: 0 1rem;
     scroll-padding-inline: 1rem;

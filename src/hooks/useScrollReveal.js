@@ -24,7 +24,19 @@ export function useScrollReveal() {
       { threshold: 0.15, rootMargin: '0px 0px -10% 0px' },
     )
 
-    els.forEach((el) => io.observe(el))
+    // Anything already on screen at load (even partially, or below the
+    // 0.15 threshold above) should just be there - no waiting for a
+    // scroll to trigger it. Only elements starting below the fold get
+    // the scroll-triggered fade-up via the observer.
+    els.forEach((el) => {
+      const rect = el.getBoundingClientRect()
+      const onScreen = rect.top < window.innerHeight && rect.bottom > 0
+      if (onScreen) {
+        el.classList.add('is-visible')
+      } else {
+        io.observe(el)
+      }
+    })
 
     return () => io.disconnect()
   }, [])

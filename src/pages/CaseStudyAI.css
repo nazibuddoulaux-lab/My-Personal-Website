@@ -1,0 +1,36 @@
+.case-study {
+  padding-top: 4.875rem; /* clears the fixed nav, matches Hero's clearance */
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem; /* 10px, matches the gap between sections in Figma */
+}
+
+.case-study__intro {
+  padding: 3rem 0 1.5rem;
+}
+
+.case-study__title {
+  font-size: 4rem; /* 64px at the 1440 baseline, matches the Figma spec */
+  max-width: 48rem;
+}
+
+.case-study__image {
+  width: 100%;
+  border-radius: 0;
+}
+
+@media (max-width: 1024px) {
+  .case-study__title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .case-study__title {
+    font-size: 2rem;
+  }
+
+  .case-study__intro {
+    padding: 2rem 0 1rem;
+  }
+}

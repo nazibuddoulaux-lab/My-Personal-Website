@@ -1,27 +1,18 @@
-import { useScrollReveal } from './hooks/useScrollReveal'
-import Header from './components/Header'
-import Hero from './components/Hero'
-import ProjectsShowcase from './components/ProjectsShowcase'
-import AboutIntro from './components/AboutIntro'
-import StatsGrid from './components/StatsGrid'
-import CaseStudyFeature from './components/CaseStudyFeature'
-import GalleryRow from './components/GalleryRow'
-import Footer from './components/Footer'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useSmoothScroll } from './hooks/useSmoothScroll'
+import Home from './pages/Home'
+import CaseStudyAI from './pages/CaseStudyAI'
 
 function App() {
-  useScrollReveal()
+  useSmoothScroll()
 
   return (
-    <div className="page">
-      <Header />
-      <Hero />
-      <ProjectsShowcase />
-      <AboutIntro />
-      <StatsGrid />
-      <CaseStudyFeature />
-      <GalleryRow />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/case-study/ai-analytics-platform" element={<CaseStudyAI />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

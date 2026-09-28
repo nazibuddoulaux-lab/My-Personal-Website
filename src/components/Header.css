@@ -8,6 +8,12 @@
   pointer-events: none;
 }
 
+/* Floating pill sits at least 30px higher than the rest-state bar,
+   at every breakpoint (overrides the media-query padding-top below). */
+.site-header.is-scrolled {
+  padding-top: 0.75rem; /* 12px, i.e. 32px - 30px + 10px */
+}
+
 /* Morphs from the flush, full-width bar (matching every other section's
    edges) into a floating, blurred glass pill once the page scrolls —
    same signature interaction as ahmadfiroz.com's nav. */
@@ -18,12 +24,12 @@
   border: 1px solid transparent;
   box-shadow: none;
   transition:
-    max-width 0.3s ease-out,
-    border-radius 0.3s ease-out,
-    background-color 0.3s ease-out,
-    border-color 0.3s ease-out,
-    box-shadow 0.3s ease-out,
-    padding 0.3s ease-out;
+    max-width 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-radius 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    padding 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .site-header.is-scrolled .site-header__pill {
@@ -61,7 +67,7 @@
   font-weight: 600;
   line-height: 130%;
   color: var(--color-heading);
-  transition: font-size 0.3s ease-out;
+  transition: font-size 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* On scroll the name shrinks to match the nav links' size, staying black
@@ -77,17 +83,52 @@
 }
 
 .site-header__nav a {
+  position: relative;
+  display: inline-block;
   font-family: var(--font-sans);
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 150%;
   text-transform: capitalize;
-  color: rgba(33, 33, 33, 0.4);
+  color: #2e2e2e;
   text-decoration: none;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* An underline that grows in from the left on hover, instead of the
+   color swap being the only feedback. */
+.site-header__nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.25rem;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .site-header__nav a:hover {
   color: var(--color-heading);
+  transform: translateY(-1px);
+}
+
+.site-header__nav a:hover::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header__nav a {
+    transition: none;
+  }
+
+  .site-header__nav a::after {
+    transition: none;
+  }
 }
 
 @media (max-width: 768px) {
