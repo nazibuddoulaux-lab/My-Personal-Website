@@ -1,0 +1,59 @@
+/* Positioned in percentages of the card (384x310 baseline) so the image
+   keeps its place at every card size; the card itself clips the slides
+   as they travel in from the right and out to the left. */
+.projects-carousel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 24.5%;
+  height: 62.6%;
+  pointer-events: none;
+}
+
+.projects-carousel__slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.projects-carousel__slide img {
+  width: 54.7%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.projects-carousel__slide--in {
+  animation: projects-slide-in var(--travel) cubic-bezier(0.45, 0, 0.15, 1) both;
+}
+
+.projects-carousel__slide--out {
+  animation: projects-slide-out var(--travel) cubic-bezier(0.45, 0, 0.15, 1) both;
+}
+
+@keyframes projects-slide-in {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes projects-slide-out {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-carousel__slide--in,
+  .projects-carousel__slide--out {
+    animation: none;
+  }
+}

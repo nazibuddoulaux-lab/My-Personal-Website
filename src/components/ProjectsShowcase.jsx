@@ -4,6 +4,7 @@ import { projectRows } from '../data/projects'
 import PlaceholderImage from './ui/PlaceholderImage'
 import Button from './ui/Button'
 import { use3DTilt } from '../hooks/use3DTilt'
+import { MEETING_URL } from '../data/links'
 
 function ImageCell({ image, src, caption, href = '#case-study', delay }) {
   const LinkComponent = href.startsWith('/') ? Link : 'a'
@@ -106,7 +107,9 @@ function ProjectCell({ cell, delay }) {
         style={{ transitionDelay: `${delay}s` }}
       >
         <p>{cell.paragraph}</p>
-        <Button variant="black">{cell.button}</Button>
+        <Button variant="black" href={MEETING_URL}>
+          {cell.button}
+        </Button>
       </div>
     )
   }

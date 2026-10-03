@@ -2,18 +2,21 @@ import './StatsGrid.css'
 import { industries } from '../data/industries'
 import PlaceholderImage from './ui/PlaceholderImage'
 import Button from './ui/Button'
+import ProjectsCarousel from './ProjectsCarousel'
+import { MEETING_URL } from '../data/links'
 
 function StatsGrid() {
   return (
     <section className="stats">
       <div className="container stats__grid">
         <div className="stats__card stats__card--experience reveal">
-          <h3>9+ years of professional experience</h3>
           <PlaceholderImage
+            className="stats__card-bg"
             label="experience chart"
             src="/images/9+.jpg"
-            ratio="384 / 262"
+            ratio="384 / 310"
           />
+          <h3>9+ years of professional experience</h3>
         </div>
 
         <div
@@ -45,7 +48,9 @@ function StatsGrid() {
               partnerships.
             </p>
           </div>
-          <Button variant="black">Set a 15 Min Meeting</Button>
+          <Button variant="black" href={MEETING_URL}>
+            Set a 15 Min Meeting
+          </Button>
         </div>
 
         <div
@@ -53,11 +58,7 @@ function StatsGrid() {
           style={{ transitionDelay: '0.15s' }}
         >
           <h3>40+ projects done</h3>
-          <PlaceholderImage
-            className="stats__card-inset"
-            label="project mockup"
-            ratio="162 / 194"
-          />
+          <ProjectsCarousel />
         </div>
 
         <div

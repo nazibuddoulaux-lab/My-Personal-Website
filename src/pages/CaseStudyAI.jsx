@@ -17,7 +17,7 @@ function CaseStudyAI() {
       <Header />
       <CloseButton />
 
-      <article className="case-study">
+      <article className="case-study-page">
         <section className="container case-study__intro">
           <h1 className="display-heading case-study__title reveal">
             AI Driven Advanced Analytics Platform

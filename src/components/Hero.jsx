@@ -1,7 +1,6 @@
 import './Hero.css'
 import { ProjectsHeading } from './ProjectsShowcase'
 import { useTypewriter } from '../hooks/useTypewriter'
-import { useMagneticHover } from '../hooks/useMagneticHover'
 
 const DESCRIPTION =
   'I’m an independent product designer helping teams around the world with UX, UI, branding, vibe coding and digital product design.'
@@ -14,12 +13,11 @@ function Hero() {
     startDelay: 250,
     start: line2.done,
   })
-  const nameRef = useMagneticHover({ strength: 20 })
 
   return (
     <section className="hero">
       <div className="container hero__inner">
-        <h1 className="hero__name" ref={nameRef}>
+        <h1 className="hero__name">
           <span className={line1.done ? '' : 'typewriter-cursor'}>
             {line1.output}
           </span>

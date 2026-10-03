@@ -18,7 +18,7 @@
   scroll-padding-inline: calc((100vw - var(--container)) / 2);
   box-sizing: border-box;
   display: flex;
-  gap: 1.25rem;
+  gap: 1.5rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -31,7 +31,7 @@
 
 .gallery__item {
   margin: 0;
-  flex: 0 0 30%;
+  flex: 0 0 24rem;
   min-width: 0;
   scroll-snap-align: start;
 }
@@ -57,19 +57,22 @@
 }
 
 .gallery__item figcaption {
-  margin-top: 0.625rem;
+  margin-top: 1rem;
   font-family: var(--font-body);
   font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 150%;
-  text-transform: capitalize;
-  color: rgba(0, 0, 0, 0.6);
+  font-weight: 500;
+  line-height: 120%;
+  color: #3f3f3f;
 }
 
 @media (max-width: 1199px) {
   .gallery__grid {
     padding: 0 1.5rem;
     scroll-padding-inline: 1.5rem;
+  }
+
+  .gallery__item {
+    flex-basis: 30%;
   }
 }
 
